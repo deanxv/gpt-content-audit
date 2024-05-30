@@ -11,6 +11,10 @@ _聚合阿里、百度等开放平台，提供与`openai`请求格式对齐的�
 - [x] 支持和`openai`对齐的对话接口(`v1/chat/completions`)用户输入的内容审查。
 - [x] 支持和`openai`对齐的`dall-e-3`文生图接口(`v1/images/generations`)用户输入的内容审查。
 
+### 示例:
+
+<span><img src="docs/img.png" width="800"/></span>
+
 ## 如何使用
 
 1. 配置[环境变量](#环境变量)并[部署](#部署)本项目。
