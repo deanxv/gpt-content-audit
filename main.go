@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"gpt-content-audit/check"
 	"gpt-content-audit/common"
 	"gpt-content-audit/common/config"
 	logger "gpt-content-audit/common/loggger"
@@ -18,6 +19,9 @@ import (
 func main() {
 	logger.SetupLogger()
 	logger.SysLog(fmt.Sprintf("GPT Content Audit %s started", common.Version))
+
+	check.CheckEnvVariable()
+
 	if os.Getenv("GIN_MODE") != "debug" {
 		gin.SetMode(gin.ReleaseMode)
 	}

@@ -45,9 +45,6 @@ services:
       - TZ=Asia/Shanghai
 ```
 
-其中`AUDIT_CHANNEL_TYPE`,`BASE_URL`,`AUTHORIZATION`按照自己的需求修改，还需参考[环境变量](#环境变量)配置渠道环境变量。
-
-
 ### 基于 Docker 进行部署
 
 ```docker
@@ -60,6 +57,8 @@ docker run --name gpt-content-audit -d --restart always \
 -e TZ=Asia/Shanghai \
 deanxv/gpt-content-audit
 ```
+
+其中`AUDIT_CHANNEL_TYPE`,`BASE_URL`,`AUTHORIZATION`按照自己的需求修改，还需参考[环境变量](#环境变量)配置渠道环境变量。
 
 如果上面的镜像无法拉取,可以尝试使用 GitHub 的 Docker 镜像,将上面的`deanxv/gpt-content-audit`替换为`ghcr.io/deanxv/gpt-content-audit`即可。
 
@@ -76,7 +75,7 @@ deanxv/gpt-content-audit
 |   AUTHORIZATION    |         鉴权密钥，与转发接口的API-Key保持一致，多个以`,`分隔          |  Y   |
 |       ENABLE       |             审核启用开关[0:关闭、1:打开]（默认:1）              |  N   |
 
-#### 审核渠道-阿里
+#### 审核渠道-阿里 [阿里云-内容审核](https://vision.console.aliyun.com/cn-shanghai/detail/imageaudit)
 
 |           变量参数           |                                                变量描述                                                | 是否必填 | 
 |:------------------------:|:--------------------------------------------------------------------------------------------------:|:----:|
@@ -86,7 +85,7 @@ deanxv/gpt-content-audit
 |        ALI_LABEL         | 内容审核类型[spam:垃圾、politics:敏感、abuse:辱骂、terrorism:暴恐、porn:鉴黄、flood:灌水、contraband:违禁、ad:广告] （多个以`,`分隔 ） |  Y   |
 | ALI_AUDIT_CONTENT_LENGTH |                                        审核文本切割字节长度[默认:4000]                                         |  N   |
 
-#### 审核渠道-百度
+#### 审核渠道-百度 [百度智能云-内容审核平台](https://ai.baidu.com/censoring#/strategylist)
 
 |            变量参数            |                                                  变量描述                                                  | 是否必填 | 
 |:--------------------------:|:------------------------------------------------------------------------------------------------------:|:----:|
