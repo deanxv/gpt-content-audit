@@ -19,10 +19,10 @@ var (
 var UploadPath = "upload"
 
 func printHelp() {
-	fmt.Println("Coze Discord Proxy" + Version + "")
+	fmt.Println("GPT Content Audit" + Version + "")
 	fmt.Println("Copyright (C) 2024 Dean. All rights reserved.")
-	//fmt.Println("GitHub: https://github.com/deanxv/coze-discord-proxy ")
-	fmt.Println("Usage: coze-discord-proxy [--port <port>] [--log-dir <log directory>] [--version] [--help]")
+	//fmt.Println("GitHub: https://github.com/deanxv/gpt-content-audit ")
+	fmt.Println("Usage: gpt-content-audit [--port <port>] [--log-dir <log directory>] [--version] [--help]")
 }
 
 func init() {
