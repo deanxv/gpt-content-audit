@@ -10,7 +10,7 @@ import (
 )
 
 // ali
-var AuditType = os.Getenv("AUDIT_TYPE")
+var AuditChannelType = os.Getenv("AUDIT_CHANNEL_TYPE")
 var Enable = env.Int("ENABLE", 1)
 var BaseUrl = os.Getenv("BASE_URL")
 var Authorization = os.Getenv("AUTHORIZATION")

@@ -10,7 +10,7 @@ services:
     volumes:
       - ./data:/app/gpt-content-audit/data
     environment:
-      - AUDIT_TYPE=ali
+      - AUDIT_CHANNEL_TYPE=ali
       - BASE_URL=https://example.com
       - AUTHORIZATION=123456
       - TZ=Asia/Shanghai

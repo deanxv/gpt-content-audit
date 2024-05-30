@@ -55,7 +55,7 @@ func ChatForOpenAI(c *gin.Context) {
 	// 判断审核渠道
 	response := model.AuditResponse{}
 
-	if strings.ToLower(config.AuditType) == "ali" {
+	if strings.ToLower(config.AuditChannelType) == "ali" {
 		response, err = utils.AliAudit(request)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
@@ -67,7 +67,7 @@ func ChatForOpenAI(c *gin.Context) {
 			})
 			return
 		}
-	} else if strings.ToLower(config.AuditType) == "baidu" {
+	} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 		response, err = utils.BaiduAudit(request)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
@@ -150,7 +150,7 @@ func ImagesForOpenAI(c *gin.Context) {
 
 	response := model.AuditResponse{}
 
-	if strings.ToLower(config.AuditType) == "ali" {
+	if strings.ToLower(config.AuditChannelType) == "ali" {
 		response, err = utils.AliAudit(request)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
@@ -162,7 +162,7 @@ func ImagesForOpenAI(c *gin.Context) {
 			})
 			return
 		}
-	} else if strings.ToLower(config.AuditType) == "baidu" {
+	} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 		response, err = utils.BaiduAudit(request)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
