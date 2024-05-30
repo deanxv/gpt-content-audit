@@ -62,7 +62,7 @@ func ChatForOpenAI(c *gin.Context) {
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
 					Type:    "request_error",
-					Code:    "AUDIT_RESULT",
+					Code:    "AUDIT_CHANNEL_ERROR",
 				},
 			})
 			return
@@ -74,7 +74,7 @@ func ChatForOpenAI(c *gin.Context) {
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
 					Type:    "request_error",
-					Code:    "AUDIT_RESULT",
+					Code:    "AUDIT_CHANNEL_ERROR",
 				},
 			})
 			return
@@ -84,7 +84,7 @@ func ChatForOpenAI(c *gin.Context) {
 			OpenAIError: model.OpenAIError{
 				Message: "Unknown audit channel",
 				Type:    "request_error",
-				Code:    "INVALID_REQUEST",
+				Code:    "AUDIT_CHANNEL_ERROR",
 			},
 		})
 		return
@@ -157,7 +157,7 @@ func ImagesForOpenAI(c *gin.Context) {
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
 					Type:    "request_error",
-					Code:    "AUDIT_RESULT",
+					Code:    "AUDIT_CHANNEL_ERROR",
 				},
 			})
 			return
@@ -169,7 +169,7 @@ func ImagesForOpenAI(c *gin.Context) {
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
 					Type:    "request_error",
-					Code:    "AUDIT_RESULT",
+					Code:    "AUDIT_CHANNEL_ERROR",
 				},
 			})
 			return
@@ -179,7 +179,7 @@ func ImagesForOpenAI(c *gin.Context) {
 			OpenAIError: model.OpenAIError{
 				Message: "Unknown audit channel",
 				Type:    "request_error",
-				Code:    "INVALID_REQUEST",
+				Code:    "AUDIT_CHANNEL_ERROR",
 			},
 		})
 		return
