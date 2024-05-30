@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gpt-content-audit/model"
 	"io"
@@ -71,8 +72,31 @@ func transferResponse(w gin.ResponseWriter, resp *http.Response) error {
 		w.Header()[key] = value
 	}
 	w.WriteHeader(resp.StatusCode)
-	_, err := io.Copy(w, resp.Body)
-	return err
+
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		return fmt.Errorf("expected http.ResponseWriter to be an http.Flusher")
+	}
+
+	buf := make([]byte, 1024) // 使用一个缓冲区来读取数据
+	for {
+		n, err := resp.Body.Read(buf)
+		if n > 0 {
+			_, writeErr := w.Write(buf[:n])
+			if writeErr != nil {
+				return writeErr
+			}
+			flusher.Flush() // 立即将缓冲的数据发送出去
+		}
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func respondWithError(c *gin.Context, code int, message string) {
