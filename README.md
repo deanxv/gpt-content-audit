@@ -116,7 +116,7 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 |        变量参数        |                       变量描述                       | 是否必填 | 
 |:------------------:|:------------------------------------------------:|:----:|
 | AUDIT_CHANNEL_TYPE |             审核渠道类型[ali:阿里、baidu:百度]              |  Y   |  
-|      BASE_URL      | 审核通过后的转发接口请求地址域名或IP:端口（例如https://api.openai.com） |  Y   |
+|      BASE_URL      | 审核通过后的转发接口请求地址域名或IP:端口（例如https://api.openai.com ） |  Y   |
 |   AUTHORIZATION    |         鉴权密钥，与转发接口的API-Key保持一致，多个以`,`分隔          |  Y   |
 |       ENABLE       |             审核启用开关[0:关闭、1:打开]（默认:1）              |  N   |
 
