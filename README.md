@@ -62,6 +62,51 @@ deanxv/gpt-content-audit
 
 如果上面的镜像无法拉取,可以尝试使用 GitHub 的 Docker 镜像,将上面的`deanxv/gpt-content-audit`替换为`ghcr.io/deanxv/gpt-content-audit`即可。
 
+### 部署到第三方平台
+
+<details>
+<summary><strong>部署到 Zeabur</strong></summary>
+<div>
+
+> Zeabur 的服务器在国外,自动解决了网络的问题,有一定的免费使用额度。
+
+或手动部署:
+
+1. 首先 **fork** 一份代码。
+2. 进入 [Zeabur](https://zeabur.com?referralCode=deanxv),使用github登录,进入控制台。
+3. 在 Service -> Add Service,选择 Git（第一次使用需要先授权）,选择你 fork 的仓库。
+4. Deploy 会自动开始,先取消。
+5. 添加环境变量
+
+   `AUDIT_CHANNEL_TYPE:ali`  修改为支持的审核渠道类型
+
+   `BASE_URL:https://api.openai.com`  修改为转发后的请求域名或IP:端口
+
+   `AUTHORIZATION:123456`  修改为转发后的请求地址支持的APIKey
+
+还需参考[环境变量](#环境变量)配置渠道环境变量
+
+保存。
+
+6. 选择 Redeploy。
+
+</div>
+
+
+</details>
+
+<details>
+<summary><strong>部署到 Render</strong></summary>
+<div>
+
+> Render 提供免费额度,绑卡后可以进一步提升额度
+
+Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https://dashboard.render.com)
+
+</div>
+</details>
+
+
 ## 配置
 
 ### 环境变量
@@ -87,12 +132,12 @@ deanxv/gpt-content-audit
 
 #### 审核渠道-百度 [百度智能云-内容审核平台](https://ai.baidu.com/censoring#/strategylist)
 
-|            变量参数            |                                                  变量描述                                                  | 是否必填 | 
-|:--------------------------:|:------------------------------------------------------------------------------------------------------:|:----:|
-|       BAIDU_API_KEY        |                                              百度开放平台APIKey                                              |  Y   |  
-|      BAIDU_SECRET_KEY      |                                            百度开放平台SecretKey                                             |  Y   |
-|        BAIDU_LABEL         | 内容审核类型[default:默认违禁词库、politics:政治敏感、abuse:低俗辱骂、terrorism:暴恐违禁、porn:文本色情、flood:低质灌水、ad:恶意推广]（多个以`,`分隔 ） |  Y   |
-| BAIDU_AUDIT_CONTENT_LENGTH |                                          审核文本切割字节长度（默认:4000）                                           |  N   |
+|            变量参数            |                                                               变量描述                                                               | 是否必填 | 
+|:--------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|:----:|
+|       BAIDU_API_KEY        |                                                           百度开放平台APIKey                                                           |  Y   |  
+|      BAIDU_SECRET_KEY      |                                                         百度开放平台SecretKey                                                          |  Y   |
+|        BAIDU_LABEL         | 内容审核类型[default:默认违禁词库、politics:政治敏感、abuse:低俗辱骂、terrorism:暴恐违禁、porn:文本色情、flood:低质灌水、ad:恶意推广、black:自定义黑名单、white:自定义白名单]（多个以`,`分隔 ） |  Y   |
+| BAIDU_AUDIT_CONTENT_LENGTH |                                                       审核文本切割字节长度（默认:4000）                                                        |  N   |
 
 
 
