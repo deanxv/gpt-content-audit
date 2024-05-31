@@ -100,8 +100,8 @@ func QiNiuAudit[T model.GetUserContent](t T) (model.AuditResponse, error) {
 
 			//qiNiuResp.Result.Scenes["antispam"].
 
-			if qiNiuResp.Result.Suggestion != "pass" || qiNiuResp.Result.Scenes["antispam"].Suggestion != "review" {
-				if qiNiuResp.Result.Scenes["antispam"].Suggestion != "pass" || qiNiuResp.Result.Scenes["antispam"].Suggestion != "review" {
+			if qiNiuResp.Result.Suggestion != "pass" && qiNiuResp.Result.Suggestion != "review" {
+				if qiNiuResp.Result.Scenes["antispam"].Suggestion != "pass" && qiNiuResp.Result.Scenes["antispam"].Suggestion != "review" {
 					for _, detail := range qiNiuResp.Result.Scenes["antispam"].Details {
 						if !lo.Contains(labels, detail.Label) {
 							continue

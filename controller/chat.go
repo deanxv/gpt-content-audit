@@ -112,7 +112,7 @@ func ChatForOpenAI(c *gin.Context) {
 
 		c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 			OpenAIError: model.OpenAIError{
-				Message: fmt.Sprintf("上下文中检索到敏感信息:%s", errMsg),
+				Message: fmt.Sprintf("Sensitive information detected:%s", errMsg),
 				Type:    "request_error",
 				Code:    "AUDIT_RESULT",
 			},
@@ -219,7 +219,7 @@ func ImagesForOpenAI(c *gin.Context) {
 
 		c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 			OpenAIError: model.OpenAIError{
-				Message: fmt.Sprintf("上下文中检索到敏感信息:%s", errMsg),
+				Message: fmt.Sprintf("Sensitive information detected:%s", errMsg),
 				Type:    "request_error",
 				Code:    "AUDIT_RESULT",
 			},
