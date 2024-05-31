@@ -23,6 +23,16 @@ func CheckEnvVariable() {
 			if config.AliLabel == "" {
 				logger.FatalLog("环境变量 ALI_LABEL 未设置")
 			}
+		} else if strings.ToLower(config.AuditChannelType) == "qiniu" {
+			if config.QiNiuAccessKey == "" {
+				logger.FatalLog("环境变量 QINIU_ACCESS_KEY 未设置")
+			}
+			if config.QiNiuSecretKey == "" {
+				logger.FatalLog("环境变量 QINIU_SECRET_KEY 未设置")
+			}
+			if config.QiNiuLabel == "" {
+				logger.FatalLog("环境变量 QINIU_LABEL 未设置")
+			}
 		} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 			if config.BaiduApiKey == "" {
 				logger.FatalLog("环境变量 BAIDU_API_KEY 未设置")
@@ -43,7 +53,7 @@ func CheckEnvVariable() {
 		logger.FatalLog("环境变量 BASE_URL 未设置")
 	}
 
-	if config.Authorization == "" {
+	if config.ApiKey == "" {
 		logger.FatalLog("环境变量 AUTHORIZATION 未设置")
 	}
 

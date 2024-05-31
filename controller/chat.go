@@ -79,6 +79,18 @@ func ChatForOpenAI(c *gin.Context) {
 			})
 			return
 		}
+	} else if strings.ToLower(config.AuditChannelType) == "qiniu" {
+		response, err = utils.QiNiuAudit(request)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
+				OpenAIError: model.OpenAIError{
+					Message: "Unknown audit channel",
+					Type:    "request_error",
+					Code:    "AUDIT_CHANNEL_ERROR",
+				},
+			})
+			return
+		}
 	} else {
 		c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 			OpenAIError: model.OpenAIError{
@@ -164,6 +176,18 @@ func ImagesForOpenAI(c *gin.Context) {
 		}
 	} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 		response, err = utils.BaiduAudit(request)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
+				OpenAIError: model.OpenAIError{
+					Message: "Unknown audit channel",
+					Type:    "request_error",
+					Code:    "AUDIT_CHANNEL_ERROR",
+				},
+			})
+			return
+		}
+	} else if strings.ToLower(config.AuditChannelType) == "qiniu" {
+		response, err = utils.QiNiuAudit(request)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{

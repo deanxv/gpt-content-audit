@@ -13,8 +13,8 @@ import (
 var AuditChannelType = os.Getenv("AUDIT_CHANNEL_TYPE")
 var Enable = env.Int("ENABLE", 1)
 var BaseUrl = os.Getenv("BASE_URL")
-var Authorization = os.Getenv("AUTHORIZATION")
-var Authorizations = strings.Split(os.Getenv("AUTHORIZATION"), ",")
+var ApiKey = os.Getenv("API_KEY")
+var ApiKeys = strings.Split(os.Getenv("API_KEY"), ",")
 
 /*
 spam：文字垃圾内容识别
@@ -47,6 +47,24 @@ var BaiduApiKey = os.Getenv("BAIDU_API_KEY")
 var BaiduSecretKey = os.Getenv("BAIDU_SECRET_KEY")
 var BaiduLabel = os.Getenv("BAIDU_LABEL")
 var BaiduAuditContentLength = env.Int("BAIDU_AUDIT_CONTENT_LENGTH", 4000)
+
+/*
+normal：正常文本
+spam：含垃圾信息
+ad：广告
+politics：涉政
+terrorism：暴恐
+abuse：辱骂
+porn：色情
+flood：灌水
+contraband：违禁
+meaningless：无意义
+*/
+
+var QiNiuAccessKey = os.Getenv("QINIU_ACCESS_KEY")
+var QiNiuSecretKey = os.Getenv("QINIU_SECRET_KEY")
+var QiNiuLabel = os.Getenv("QINIU_LABEL")
+var QiNiuAuditContentLength = env.Int("QINIU_AUDIT_CONTENT_LENGTH", 4000)
 
 var DebugEnabled = strings.ToLower(os.Getenv("DEBUG")) == "true"
 

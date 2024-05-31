@@ -10,7 +10,7 @@ import (
 )
 
 func isValidSecret(secret string) bool {
-	return config.Authorization != "" && !lo.Contains(config.Authorizations, secret)
+	return config.ApiKey != "" && !lo.Contains(config.ApiKeys, secret)
 }
 
 func authHelper(c *gin.Context) {

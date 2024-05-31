@@ -9,11 +9,13 @@ _聚合阿里、百度等开放平台，提供与`openai`请求格式对齐的�
 ## 功能
 
 ### 支持内容审核渠道
+
 - [x] 阿里云
 - [x] 百度智能云
-- [ ] 七牛云
+- [x] 七牛云
 
 ### 支持`openai`对齐的接口 (支持的接口会先内容审核再转发，不支持的接口会直接转发)
+
 - [x] `v1/chat/completions` 用户输入的内容审查。
 - [x] `v1/images/generations`用户输入的内容审查。
 
@@ -116,38 +118,46 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 </div>
 </details>
 
-
 ## 配置
 
 ### 环境变量
 
 #### 通用
 
-|        变量参数        |                       变量描述                       | 是否必填 | 
-|:------------------:|:------------------------------------------------:|:----:|
-| AUDIT_CHANNEL_TYPE |             审核渠道类型[ali:阿里、baidu:百度]              |  Y   |  
+|        变量参数        |                        变量描述                         | 是否必填 | 
+|:------------------:|:---------------------------------------------------:|:----:|
+| AUDIT_CHANNEL_TYPE |               审核渠道类型[ali:阿里、baidu:百度]               |  Y   |  
 |      BASE_URL      | 审核通过后的转发接口请求地址域名或IP:端口（例如: https://api.openai.com ） |  Y   |
-|   AUTHORIZATION    |         鉴权密钥，与转发接口的API-Key保持一致，多个以`,`分隔          |  Y   |
-|       ENABLE       |             审核启用开关[0:关闭、1:打开]（默认:1）              |  N   |
+|   AUTHORIZATION    |           鉴权密钥，与转发接口的API-Key保持一致，多个以`,`分隔           |  Y   |
+|       ENABLE       |               审核启用开关[0:关闭、1:打开]（默认:1）               |  N   |
 
-#### 审核渠道-阿里 [阿里云-内容审核](https://vision.console.aliyun.com/cn-shanghai/detail/imageaudit)
+#### 审核渠道-阿里云 [阿里云-内容审核](https://vision.console.aliyun.com/cn-shanghai/detail/imageaudit)
 
 |           变量参数           |                                                变量描述                                                | 是否必填 | 
 |:------------------------:|:--------------------------------------------------------------------------------------------------:|:----:|
-|    ALI_ACCESS_KEY_ID     |                                         阿里云开放平台AccessKeyId                                         |  Y   |  
-|  ALI_ACCESS_KEY_SECRET   |                                       阿里云开放平台AccessKeySecret                                       |  Y   |
-|       ALI_ENDPOINT       |                                          阿里云开放平台Endpoint                                           |  Y   |
+|    ALI_ACCESS_KEY_ID     |                                           阿里云AccessKeyId                                           |  Y   |  
+|  ALI_ACCESS_KEY_SECRET   |                                         阿里云AccessKeySecret                                         |  Y   |
+|       ALI_ENDPOINT       |                                            阿里云Endpoint                                             |  Y   |
 |        ALI_LABEL         | 内容审核类型[spam:垃圾、politics:敏感、abuse:辱骂、terrorism:暴恐、porn:鉴黄、flood:灌水、contraband:违禁、ad:广告] （多个以`,`分隔 ） |  Y   |
 | ALI_AUDIT_CONTENT_LENGTH |                                        审核文本切割字节长度[默认:4000]                                         |  N   |
 
-#### 审核渠道-百度 [百度智能云-内容审核平台](https://ai.baidu.com/censoring#/strategylist)
+#### 审核渠道-百度智能云 [百度智能云-内容审核平台](https://ai.baidu.com/censoring#/strategylist)
 
-|            变量参数            |                                                               变量描述                                                               | 是否必填 | 
-|:--------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|:----:|
-|       BAIDU_API_KEY        |                                                           百度开放平台APIKey                                                           |  Y   |  
-|      BAIDU_SECRET_KEY      |                                                         百度开放平台SecretKey                                                          |  Y   |
-|        BAIDU_LABEL         | 内容审核类型[default:默认违禁词库、politics:政治敏感、abuse:低俗辱骂、terrorism:暴恐违禁、porn:文本色情、flood:低质灌水、ad:恶意推广、black:自定义黑名单、white:自定义白名单]（多个以`,`分隔 ） |  Y   |
-| BAIDU_AUDIT_CONTENT_LENGTH |                                                       审核文本切割字节长度（默认:4000）                                                        |  N   |
+|            变量参数            |                                                        变量描述                                                         | 是否必填 | 
+|:--------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----:|
+|       BAIDU_API_KEY        |                                                     百度智能云APIKey                                                     |  Y   |  
+|      BAIDU_SECRET_KEY      |                                                   百度智能云SecretKey                                                    |  Y   |
+|        BAIDU_LABEL         | 内容审核类型[default:默认违禁词库、politics:政治敏感、abuse:低俗辱骂、terrorism:暴恐违禁、porn:文本色情、flood:低质灌水、ad:恶意推广、black:自定义黑名单]（多个以`,`分隔 ） |  Y   |
+| BAIDU_AUDIT_CONTENT_LENGTH |                                                 审核文本切割字节长度（默认:4000）                                                 |  N   |
+
+#### 审核渠道-七牛云 [七牛云-内容审核](https://portal.qiniu.com/censor/main/overview)
+
+|            变量参数            |                                                         变量描述                                                         | 是否必填 | 
+|:--------------------------:|:--------------------------------------------------------------------------------------------------------------------:|:----:|
+|      QINIU_ACCESS_KEY      |                                                      七牛云APIKey                                                       |  Y   |  
+|      QINIU_SECRET_KEY      |                                                     七牛云SecretKey                                                     |  Y   |
+|        QINIU_LABEL         | 内容审核类型[spam:含垃圾信息、politics:涉政、abuse:辱骂、terrorism:暴恐、porn:色情、flood:灌水、ad:广告、contraband:违禁、meaningless:无意义]（多个以`,`分隔 ） |  Y   |
+| QINIU_AUDIT_CONTENT_LENGTH |                                                 审核文本切割字节长度（默认:4000）                                                  |  N   |
 
 
 
