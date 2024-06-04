@@ -66,6 +66,27 @@ var QiNiuSecretKey = os.Getenv("QINIU_SECRET_KEY")
 var QiNiuLabel = os.Getenv("QINIU_LABEL")
 var QiNiuAuditContentLength = env.Int("QINIU_AUDIT_CONTENT_LENGTH", 4000)
 
+/*
+
+"sexual": false,
+"hate": false,
+"harassment": false,
+"self-harm": false,
+"sexual/minors": false,
+"hate/threatening": false,
+"violence/graphic": false,
+"self-harm/intent": false,
+"self-harm/instructions": false,
+"harassment/threatening": true,
+"violence": true,
+
+*/
+
+var OpenaiModerationBaseUrl = os.Getenv("OPENAI_MODERATION_BASE_URL")
+var OpenaiModerationApiKey = os.Getenv("OPENAI_MODERATION_API_KEY")
+var OpenaiModerationLabel = os.Getenv("OPENAI_MODERATION_LABEL")
+var OpenaiModerationAuditContentLength = env.Int("OPENAI_MODERATION_AUDIT_CONTENT_LENGTH", 4000)
+
 var DebugEnabled = strings.ToLower(os.Getenv("DEBUG")) == "true"
 
 var SessionSecret = uuid.New().String()

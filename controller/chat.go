@@ -60,7 +60,7 @@ func ChatForOpenAI(c *gin.Context) {
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
-					Message: "Unknown audit channel",
+					Message: err.Error(),
 					Type:    "request_error",
 					Code:    "AUDIT_CHANNEL_ERROR",
 				},
@@ -72,7 +72,7 @@ func ChatForOpenAI(c *gin.Context) {
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
-					Message: "Unknown audit channel",
+					Message: err.Error(),
 					Type:    "request_error",
 					Code:    "AUDIT_CHANNEL_ERROR",
 				},
@@ -84,7 +84,19 @@ func ChatForOpenAI(c *gin.Context) {
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
-					Message: "Unknown audit channel",
+					Message: err.Error(),
+					Type:    "request_error",
+					Code:    "AUDIT_CHANNEL_ERROR",
+				},
+			})
+			return
+		}
+	} else if strings.ToLower(config.AuditChannelType) == "openai" {
+		response, err = utils.OpenaiAudit(request)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
+				OpenAIError: model.OpenAIError{
+					Message: err.Error(),
 					Type:    "request_error",
 					Code:    "AUDIT_CHANNEL_ERROR",
 				},

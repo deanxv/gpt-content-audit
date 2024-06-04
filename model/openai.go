@@ -107,3 +107,17 @@ func (r OpenAIChatCompletionRequest) GetUserContent() []string {
 func (r OpenAIImagesGenerationRequest) GetUserContent() []string {
 	return []string{r.Prompt}
 }
+
+type OpenAIModerationRequest struct {
+	Input string `json:"input"`
+}
+
+type OpenAIModerationResponse struct {
+	ID      string `json:"id"`
+	Model   string `json:"model"`
+	Results []struct {
+		Flagged        bool               `json:"flagged"`
+		Categories     map[string]bool    `json:"categories"`
+		CategoryScores map[string]float64 `json:"category_scores"`
+	} `json:"results"`
+}

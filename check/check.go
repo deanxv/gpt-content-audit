@@ -43,6 +43,16 @@ func CheckEnvVariable() {
 			if config.BaiduLabel == "" {
 				logger.FatalLog("环境变量 BAIDU_LABEL 未设置")
 			}
+		} else if strings.ToLower(config.AuditChannelType) == "openai" {
+			if config.OpenaiModerationBaseUrl == "" {
+				logger.FatalLog("环境变量 OPENAI_MODERATION_BASE_URL 未设置")
+			}
+			if config.OpenaiModerationApiKey == "" {
+				logger.FatalLog("环境变量 OPENAI_MODERATION_API_KEY 未设置")
+			}
+			if config.OpenaiModerationLabel == "" {
+				logger.FatalLog("环境变量 OPENAI_MODERATION_LABEL 未设置")
+			}
 		} else {
 			logger.FatalLog("不支持的 AUDIT_CHANNEL_TYPE ！")
 
