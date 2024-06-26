@@ -1,5 +1,7 @@
 package model
 
+import "gpt-content-audit/common/config"
+
 type OpenAIChatCompletionRequest struct {
 	Model    string              `json:"model"`
 	Stream   bool                `json:"stream"`
@@ -95,12 +97,27 @@ type GetUserContent interface {
 
 func (r OpenAIChatCompletionRequest) GetUserContent() []string {
 	var userContent []string
-	for _, msg := range r.Messages {
-		switch contentObj := msg.Content.(type) {
-		case string:
-			userContent = append(userContent, contentObj)
+	if config.AllDialogRecordEnable == 1 {
+		for _, msg := range r.Messages {
+			if msg.Role == "user" {
+				switch contentObj := msg.Content.(type) {
+				case string:
+					userContent = append(userContent, contentObj)
+				}
+			}
+		}
+	} else {
+		for i := len(r.Messages) - 1; i >= 0; i-- {
+			if r.Messages[i].Role == "user" {
+				switch contentObj := r.Messages[i].Content.(type) {
+				case string:
+					userContent = append(userContent, contentObj)
+				}
+				break
+			}
 		}
 	}
+
 	return userContent
 }
 

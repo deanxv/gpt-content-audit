@@ -85,6 +85,7 @@ var QiNiuAuditContentLength = env.Int("QINIU_AUDIT_CONTENT_LENGTH", 4000)
 var OpenaiModerationBaseUrl = os.Getenv("OPENAI_MODERATION_BASE_URL")
 var OpenaiModerationApiKey = os.Getenv("OPENAI_MODERATION_API_KEY")
 var OpenaiModerationLabel = os.Getenv("OPENAI_MODERATION_LABEL")
+var AllDialogRecordEnable = env.Int("ALL_DIALOG_RECORD_ENABLE", 0)
 var OpenaiModerationAuditContentLength = env.Int("OPENAI_MODERATION_AUDIT_CONTENT_LENGTH", 4000)
 
 var DebugEnabled = strings.ToLower(os.Getenv("DEBUG")) == "true"
