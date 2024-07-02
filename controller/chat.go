@@ -58,6 +58,7 @@ func ChatForOpenAI(c *gin.Context) {
 	if strings.ToLower(config.AuditChannelType) == "ali" {
 		response, err = utils.AliAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: err.Error(),
@@ -70,6 +71,7 @@ func ChatForOpenAI(c *gin.Context) {
 	} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 		response, err = utils.BaiduAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: err.Error(),
@@ -82,6 +84,7 @@ func ChatForOpenAI(c *gin.Context) {
 	} else if strings.ToLower(config.AuditChannelType) == "qiniu" {
 		response, err = utils.QiNiuAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: err.Error(),
@@ -92,8 +95,9 @@ func ChatForOpenAI(c *gin.Context) {
 			return
 		}
 	} else if strings.ToLower(config.AuditChannelType) == "openai" {
-		response, err = utils.OpenaiAudit(request)
+		response, err = utils.OpenaiAudit(c, request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: err.Error(),
@@ -177,6 +181,7 @@ func ImagesForOpenAI(c *gin.Context) {
 	if strings.ToLower(config.AuditChannelType) == "ali" {
 		response, err = utils.AliAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
@@ -189,6 +194,7 @@ func ImagesForOpenAI(c *gin.Context) {
 	} else if strings.ToLower(config.AuditChannelType) == "baidu" {
 		response, err = utils.BaiduAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",
@@ -201,6 +207,7 @@ func ImagesForOpenAI(c *gin.Context) {
 	} else if strings.ToLower(config.AuditChannelType) == "qiniu" {
 		response, err = utils.QiNiuAudit(request)
 		if err != nil {
+			logger.Errorf(c.Request.Context(), err.Error())
 			c.JSON(http.StatusInternalServerError, model.OpenAIErrorResponse{
 				OpenAIError: model.OpenAIError{
 					Message: "Unknown audit channel",

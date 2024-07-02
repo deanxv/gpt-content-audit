@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"gpt-content-audit/common"
 	"gpt-content-audit/common/config"
+	logger "gpt-content-audit/common/loggger"
 	"gpt-content-audit/model"
 	"io"
 	"net/http"
@@ -14,7 +16,7 @@ import (
 
 var moderationUrl = fmt.Sprintf("%s/v1/moderations", config.OpenaiModerationBaseUrl)
 
-func OpenaiAudit[T model.GetUserContent](t T) (model.AuditResponse, error) {
+func OpenaiAudit[T model.GetUserContent](c *gin.Context, t T) (model.AuditResponse, error) {
 
 	labels := strings.Split(config.OpenaiModerationLabel, ",")
 
@@ -48,11 +50,12 @@ func OpenaiAudit[T model.GetUserContent](t T) (model.AuditResponse, error) {
 			defer resp.Body.Close()
 
 			bodyBytes, err := io.ReadAll(resp.Body)
-			if err != nil || resp.StatusCode != http.StatusOK {
+			if err != nil {
 				return model.AuditResponse{}, err
 			}
 
 			if resp.StatusCode != http.StatusOK {
+				logger.Error(c.Request.Context(), string(bodyBytes))
 				return model.AuditResponse{}, fmt.Errorf("request moderations error")
 			}
 
