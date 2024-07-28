@@ -11,6 +11,7 @@ import (
 
 // ali
 var AuditChannelType = os.Getenv("AUDIT_CHANNEL_TYPE")
+var CustomAuditResult = os.Getenv("CUSTOM_AUDIT_RESULT")
 var Enable = env.Int("ENABLE", 1)
 var BaseUrl = os.Getenv("BASE_URL")
 var ApiKey = os.Getenv("API_KEY")

@@ -22,6 +22,10 @@ _聚合Openai、阿里云、百度智能云、七牛云等开放平台，提供�
 
 ### 示例:
 
+**自定义审核结果**:
+<span><img src="docs/img2.png" width="800"/></span>
+
+**未自定义审核结果**:
 <span><img src="docs/img.png" width="800"/></span>
 
 ## 如何使用
@@ -131,6 +135,7 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 | ALL_DIALOG_RECORD_ENABLE |             全量上下文审核开关[0:关闭、1:打开]（默认:0）              |  N   |  
 |      BASE_URL      | 审核通过后的转发接口请求地址域名或IP:端口（例如: https://api.openai.com ） |  Y   |
 |      API_KEY       |           鉴权密钥，与转发接口的API-Key保持一致，多个以`,`分隔           |  Y   |
+|       CUSTOM_AUDIT_RESULT       |                      自定义审核结果文本                      |  N   |
 |       ENABLE       |               审核启用开关[0:关闭、1:打开]（默认:1）               |  N   |
 
 #### 审核渠道-Openai [Openai-内容审核](https://platform.openai.com/docs/api-reference/moderations/create)

@@ -1,6 +1,12 @@
 package common
 
-import "unicode/utf8"
+import (
+	"github.com/google/uuid"
+	jsoniter "github.com/json-iterator/go"
+	_ "github.com/pkoukk/tiktoken-go"
+	"strings"
+	"unicode/utf8"
+)
 
 // splitStringByBytes 将字符串按照指定的字节数进行切割
 func SplitStringByBytes(s string, size int) []string {
@@ -31,4 +37,21 @@ func SplitStringByBytes(s string, size int) []string {
 	}
 
 	return result
+}
+
+func Obj2Bytes(obj interface{}) ([]byte, error) {
+	// 创建一个jsonIter的Encoder
+	configCompatibleWithStandardLibrary := jsoniter.ConfigCompatibleWithStandardLibrary
+	// 将结构体转换为JSON文本并保持顺序
+	bytes, err := configCompatibleWithStandardLibrary.Marshal(obj)
+	if err != nil {
+		return nil, err
+	}
+	return bytes, nil
+}
+
+func GetUUID() string {
+	code := uuid.New().String()
+	code = strings.Replace(code, "-", "", -1)
+	return code
 }
