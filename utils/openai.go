@@ -68,7 +68,7 @@ func OpenaiAudit[T model.GetUserContent](c *gin.Context, t T) (model.AuditRespon
 			if openaiResp.Results[0].Flagged {
 				for _, label := range labels {
 					openailabel := strings.Replace(label, "-", "/", 1)
-					if openaiResp.Results[0].Categories[openailabel] {
+					if openaiResp.Results[0].Categories[openailabel] || openaiResp.Results[0].Categories[label] {
 						resultRes := &model.AuditResultResponse{
 							//MessageIndex: i,
 							Context:    content,
